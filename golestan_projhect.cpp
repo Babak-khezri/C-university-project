@@ -38,9 +38,9 @@ void liststudent();
 void listteacher();
 int main(){
 	MainMenu();
-//	FILE *p;
+	FILE *p;
 	
-//	p=fopen("my file.txt","w+");
+	p=fopen("my file.txt","w+");
 }
 void MainMenu(){
 	int x;
@@ -407,10 +407,8 @@ void Course()
 	printf("mabai:3\n");
 	printf("az math:4\n");
 	printf("az fizik:5\n");	
-	switch(x)
-	{
-		case 1:
-		{
+	switch(x){
+		case 1:{
 			FILE *co;
 			co=fopen("course.txt","a+");
 			int y;
@@ -423,27 +421,23 @@ void Course()
 			printf("student:1\n");
 			printf("teacher:1\n");
 			scanf("%d",y);
-				switch(y)
-				{
-					case 1:
-					{
-						printf("enter a student_id:\n");
-						scanf("%s",&st.id);
-						break;
-					}
-					case 2:
-					{
-						printf("enter a teacher_id:\n");
-						scanf("%s",te.id);
-						break;
-					}
+			switch(y){
+				case 1:{
+					printf("enter a student_id:\n");
+					scanf("%s",&st.id);
+					break;
 				}
+				case 2:{
+					printf("enter a teacher_id:\n");
+					scanf("%s",te.id);
+					break;
+				}
+			}
 			fprintf(co,"%-5d %-4d %-8f %-11s",cr.code ,cr.number ,cr.grade ,st.id);
 			fclose(co);
 			break;
 		}
-		case 2:
-		{
+		case 2:{
 			FILE *co;
 			co=fopen("course.txt","a+");
 			int y;
@@ -472,8 +466,7 @@ void Course()
 			fclose(co);
 			break;
 		}
-		case 3:
-		{
+		case 3:{
 			FILE *co;
 			co=fopen("course.txt","a+");
 			int y;
@@ -502,8 +495,7 @@ void Course()
 			fclose(co);
 			break;
 		}
-		case 4:
-		{
+		case 4:{
 			FILE *co;
 			co=fopen("course.txt","a+");
 			int y;
@@ -532,8 +524,7 @@ void Course()
 			fclose(co);
 			break;
 		}
-		case 5:
-		{
+		case 5:{
 			FILE *co;
 			co=fopen("course.txt","a+");
 			int y;
@@ -565,8 +556,7 @@ void Course()
 	}
 	FILE *co;
 	co=fopen("course.txt","r+");
-	while(feof(co)==0)
-	{
+	while(feof(co)==0){
 		fscanf(co,"%-5d %-4d %-8f %-11s",&cr.code ,&cr.number ,&cr.grade ,&st.id);
 		printf("%-5d %-4d %-8f %-11s",cr.code ,cr.number ,cr.grade ,st.id);
 	}
@@ -581,28 +571,19 @@ void TopStudent()
 	scanf("%s",name);
 	co=fopen("course.txt","r+");
 	fscanf(co,"%s %s %f",cr.name,cr.code,cr.grade);
-	if(strcmp(name,cr.name)==0)
-	{
+	if(strcmp(name,cr.name)==0){
 		max1=cr.grade;
 		max2=cr.grade;
 		max3=cr.grade;	
 	}	
-	while(feof(co)==0)
-	{
-		if(strcmp(name,cr.name)==0)
-		{
+	while(feof(co)==0){
+		if(strcmp(name,cr.name)==0){
 			if(cr.grade>max1)
-			{
 				max1=cr.grade;	
-			}
-				if(cr.grade<=max1&&cr.grade>max2)
-			{
+			if(cr.grade<=max1&&cr.grade>max2)
 				max2=cr.grade;	
-			}
-				if(cr.grade<=max1&&cr.grade<=max2&&cr.grade>max3)
-			{
-				max3=cr.grade;	
-			}	
+			if(cr.grade<=max1&&cr.grade<=max2&&cr.grade>max3)
+				max3=cr.grade;		
 		}	
 	}
 		printf("top1:%f\ntop2:%f\ntop3:%f",max1,max2,max3);
@@ -611,22 +592,18 @@ void Exite()
 {
 	exit(0);
 }
-/////////////////////////////////////////////////////////////////////
 void check(){
 	int truee=0;
 	char pass[30];
 	char id[30];
 	FILE *p;
-	for(;;)
-	{
+	for(;;){
 		scanf("%s",id);
 		scanf("%s",pass);
 	//	p=open("passwords.txt","r+");	
-		while(feof(p)==0)
-		{
+		while(feof(p)==0){
 			fscanf(p,"%s %s",te.id,te.pass);
-			if(strcmp(te.id,id)==0&&strcmp(te.pass,pass)==0)
-			{
+			if(strcmp(te.id,id)==0&&strcmp(te.pass,pass)==0){
 				truee=1;
 				break;
 			}
@@ -639,39 +616,32 @@ void check(){
 showscores()
 {
 	FILE *p;
-	//p=fopen("course.txt","r+");
+	p=fopen("course.txt","r+");
 	printf("1:math");
 	printf("2:programming");
 	printf("3:english");
 	char c;
 	c=getchar();
-	switch(c)
-	{
-		case 1:
-		{
-			while(feof(p)==0)
-			{
-				fscanf("%s %s %f",cr.name,cr.id,&cr.score);
-				if(strcmp(cr.name,"math")==0)
+	switch(c){
+		case 1:{
+			while(feof(p)==0){
+				//fscanf("%s %s %f",cr.name,cr.id,&cr.score);
+				//if(strcmp(cr.name,"math")==0)
 					printf("%s %f\n",cr.id,cr.score);
 			}	
 			break;
 		}
-		case 2:
-		{	
-			while(feof(p)==0)
-			{
-				fscanf("%s %s %f",cr.name,cr.id,&cr.score);
+		case 2:{	
+			while(feof(p)==0){
+				//fscanf("%s %s %f",cr.name,cr.id,&cr.score);
 				if(strcmp(cr.name,"programing")==0)
 					printf("%s %f\n",cr.id,cr.score);
 			}
 			break;
 		}
-		case 3:
-		{
-			while(feof(p)==0)
-			{
-				fscanf("%s %s %f",cr.name,cr.id,&cr.score);
+		case 3:{
+			while(feof(p)==0){
+				//fscanf("%s %s %f",cr.name,cr.id,&cr.score);
 				if(strcmp(cr.name,"english")==0)
 					printf("%s %f\n",cr.id,cr.score);
 			}
